@@ -1,0 +1,43 @@
+if user.isManager
+  p.right 博文数-{{posts.length}}
+  div.col-md-10(ng-repeat='post in posts')
+    div.panel.panel-default(ng-show="!post.hide")
+      div.panel-heading 
+        h4 {{post.title}}
+      div.panel-body 
+        p {{post.text}}
+        a(ui-sref="index.readPost({username: post.username, id: post.id})") 详情(查看评论)
+        |  -
+        a(ui-sref="index.hidePost({username:post.username, id: post.id})") 隐藏
+        |  - 
+        a(ui-sref="index.deletePost({username: post.username, id: post.id})") 删除
+    div.panel.panel-default(ng-show="post.hide")
+      div.panel-heading 
+        h4 {{post.title}}
+      div.panel-body
+        p 该内容已经被管理员隐藏
+        a(ui-sref="index.readPost({username: post.username, id: post.id})") 查看隐藏内容
+        |  -
+        a(ui-sref="index.cancelHidePost({username:post.username, id: post.id})") 取消隐藏
+        |  - 
+        a(ui-sref="index.deletePost({username: post.username, id: post.id})") 删除
+else 
+  p.right 博文数-{{posts.length}}
+  div.col-md-10(ng-repeat='post in posts')
+    div.panel.panel-default(ng-show="!post.hide")
+      div.panel-heading 
+        h4 {{post.title}}
+      div.panel-body 
+        p {{post.text}} 
+          a(ui-sref="index.readPost({username: post.username, id: post.id})") 详情(查看评论)
+       ul.list-group
+        li.list-group-item 
+          p 评论：
+            textarea(ng-model='comment', cols='50', rows='2')
+          p
+            button.btn.btn-success(ng-click='submitComment(post)') 提交评论
+    div.panel.panel-warning(ng-show="post.hide")
+      div.panel-heading 
+        h4 {{post.title}}
+      div.panel-body
+        p.error 该内容已经被管理员隐藏

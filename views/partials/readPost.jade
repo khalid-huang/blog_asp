@@ -1,3 +1,43 @@
-section
-  h3 {{post.title}}
-  div {{post.text}}
+if user.isManager
+	div.col-md-10
+		div.panel.panel-default
+			div.panel-heading
+				h4 {{post.title}}
+			div.panel-body
+				p {{post.text}}
+		div.panel.panel-default
+			div.panel-heading
+				h4 评论区
+			ul.list-group
+				li.list-group-item(ng-repeat='comment in post.comments')
+					div(ng-show="!comment.hide")
+						div {{comment.content}}
+							a.right.btn.btn-primary.btn-xs(ui-sref="index.hideComment({username:post.username, blogId:post.id, id: comment.id})") 隐藏
+					div(ng-show="comment.hide")
+						div 该评论已经被管理员隐藏
+else
+	div.col-md-10
+		div.panel.panel-default
+			div.panel-heading
+				h4 {{post.title}}
+			div.panel-body
+				p {{post.text}}
+		div.panel.panel-default
+			div.panel-heading
+				h4 评论区
+				ul.list-group
+					li.list-group-item(ng-repeat='comment in post.comments') 
+						div(ng-show="!comment.hide")
+							p {{comment.content}}
+						div(ng-show="comment.hide")
+							p.error 该评论已经被管理员隐藏
+				//显示自己的评论
+				ul.list-group
+					li.list-group-item(ng-repeat="comment in comments") {{comment}}
+				div.panel-body
+					h4 我也来一发
+					p
+						textarea(ng-model='comment', cols='50', rows='5')
+					p
+						button.btn.btn-success(ng-click='submitComment()') 提交评论
+						button.btn.btn-default(ng-click='goBack()') 退出编辑

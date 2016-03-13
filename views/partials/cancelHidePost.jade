@@ -1,13 +1,13 @@
 div.col-md-10
 	div.panel.panel-default
 		div.panel-heading
-			h4 {{post.title}}
+			h4 {{post.title}}ul.list-group
 		div.panel-body
 			p {{post.text}}
 div.col-md-10
 	div.panel.panel-warning
 		div.panel-body
-			p Are you sure you want to delete this post? 
-			button.btn.btn-success(ng-click='deletePost()') Yes
+			p Are you sure you want to cancel the hidding of this post? 
+			button.btn.btn-success(ng-click='cancelHidePost()') Yes
 			|  - 
 			button.btn.btn-waring(ng-click='home()') No thanks

@@ -1,0 +1,27 @@
+//这里要根据后台的cookie情况来判断也就是传参数来判断
+
+if user.isManager
+  //管理员
+  nav.navbar.navbar-inverse(role="navigation")
+    div.navbar-header
+      a.navbar-brand(ui-sref="index.home") BLOG
+    ul.nav.navbar-nav
+      li
+        a(ui-sref="index.home") 首页
+      li
+        a(ng-click="signOut()") 注销    
+else    
+  //普通用户
+  nav.navbar.navbar-inverse(role="navigation")
+    div.navbar-header
+      a.navbar-brand(ui-sref="index.home") BLOG
+    ul.nav.navbar-nav
+      li
+        a(ui-sref="index.home") 首页
+      li
+        a(ui-sref="index.addPost") 写博文
+       li 
+        a(ui-sref="index.home.own({username: username})") 个人主页
+      li
+        a(ng-click="signOut()") 注销
+

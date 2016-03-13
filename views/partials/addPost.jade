@@ -1,7 +1,19 @@
-h2 Write a new post
-label(for='title') Title: 
-input(ng-model='form.title', name='title')
-p Body:
-textarea(ng-model='form.text', cols='50', rows='15')
-p
-  button(ng-click='submitPost()') Submit Post
+div.panel.panel-primary
+	div.panel-body
+		div.row
+			div.col-md-12.col-md-offset-4
+				h2 编写新博文
+		div.row.col-md-offset-2
+			div.col-md-12
+				form.form-horizontal(role="form" name="postForm" ng-submit="submitPost()" ng-controller="AddPostCtrl")
+					div.form-group
+						label.col-md-2.control-label(for='title') 标题: 
+						div.col-md-10
+							input(ng-model='form.title' name='title' required)
+					div.form-group
+						label.col-md-2.control-label(for='text') 内容
+						div.col-md-10
+							textarea(ng-model='form.text' cols='50' rows='15' name='text' required)
+					div.form-group
+						div.right
+							button.btn.btn-success.btn-lg(type="submit" ng-disabled="!postForm.$valid") 提交博文

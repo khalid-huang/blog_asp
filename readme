@@ -1,0 +1,6 @@
+1)程序运行说明:DEBUG=blog:* npm start (ubuntu下)
+2)数据库使用的是mongodb
+3)加密使用的是md5
+4)预置了测试数据
+	管理员帐号：manager, 密码：123456
+	普通用户：kinthon, 密码：123456

@@ -1,0 +1,39 @@
+div.panel.panel-primary
+    div.panel-body
+        div.row
+            div.col-md-12.col-md-offset-4
+                h2 博客注册
+        div.row
+            div.col-md-12.col-md-offset-1
+                form.form-horizontal(role="form" name="signupForm" ng-submit="submit()" ng-controller="SignupCtrl")
+                    div.form-group
+                        label.col-md-2.control-label(for="username") 用户名
+                        div.col-md-10
+                            input.col-md-5(type="text" id="username" name="username" ng-model="user.username" placeholder='6~18位英文字母、数字或下划线，以英文字母开头' required)
+                            span(ng-show="signupForm.username.$dirty && signupForm.username.$error.required") 必填项
+                            span(ng-show="!validInfo.isUsernameValid") {{validator.form.username.errorMessage}}
+                            span(ng-show="!validInfo.isUsernameUnique") 用户名已被占用          
+                    div.form-group
+                        label.col-md-2.control-label(for="email") 邮箱
+                        div.col-md-10
+                            input.col-md-5(type="text" id="email" name="email" ng-model="user.email"  placeholder="合法邮箱即可" required)
+                            span(ng-show="signupForm.email.$dirty && signupForm.email.$error.required") 必填项            
+                            span(ng-show="!validInfo.isEmailValid") {{validator.form.email.errorMessage}}
+                            span(ng-show="!validInfo.isEmailUnique") 邮箱已被占用
+                    div.form-group
+                        label.col-md-2.control-label(for="password") 密码 
+                        div.col-md-10
+                            input.col-md-5(type="password" id="password" name="password" ng-model="user.password" placeholder='6~12位数字、大小写字母、中划线、下划线' required)
+                            span(ng-show="signupForm.password.$dirty && signupForm.password.$error.required") 必填项 
+                            span(ng-show="!validInfo.isPasswordValid") {{validator.form.password.errorMessage}}
+                    div.form-group
+                        label.col-md-2.control-label(for="repeatedPassword") 重复密码
+                        div.col-md-10
+                            input.col-md-5(type="password" id="repeatedPassword" name="repeatedPassword" ng-model="user.repeatedPassword" required)
+                            span(ng-show="signupForm.repeatedPassword.$dirty && signupForm.repeatedPassword.$error.required") 必填项 
+                            span(ng-show="!validInfo.isRepeatedPasswordValid") {{validator.form.repeatedPassword.errorMessage}}
+                    div.form-group
+                        div.col-md-offset-2.col-md-12
+                            button.btn.btn-success.btn-lg(type="submit" ng-disabled="!signupForm.$valid") 提交
+                            button.btn.btn-warning.btn-lg(type="reset") 重置
+                            a.btn.btn-default.btn-lg(ui-sref="index") 登录

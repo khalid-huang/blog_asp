@@ -1,0 +1,15 @@
+div.col-md-10
+	div.panel.panel-default
+		div.panel-heading
+			h4 {{post.title}}
+		div.panel-body
+			p {{post.text}}
+		div.panel-body
+			p 评论: {{comment.content}}
+div.col-md-10
+	div.panel.panel-warning
+		div.panel-body
+			p Are you sure you want to hide this comment? 
+			button.btn.btn-success(ng-click='hideComment()') Yes
+			|  - 
+			button.btn.btn-warning(ng-click='back()') No thanks

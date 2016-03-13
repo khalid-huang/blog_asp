@@ -1,0 +1,13 @@
+//posts都是自己的
+p.right 博文数-{{posts.length}}
+div.col-md-10(ng-repeat='post in posts')
+  div.panel.panel-default(ng-show="!post.hide")
+    div.panel-heading 
+      h4 {{post.title}}
+    div.panel-body 
+      p {{post.text}}
+      a(ui-sref="index.readPost({username: post.username, id: post.id})") 更多
+      |  -
+      a(ui-sref="index.editPost({username: post.username, id: post.id})") 编辑
+      |  -
+      a(ui-sref="index.deletePost({username: post.username, id: post.id})") 删除
